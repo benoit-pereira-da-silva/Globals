@@ -48,7 +48,7 @@ public func syncOnMain(execute block: () throws -> Void) rethrows-> (){
 }
 
 
-public func syncOnMainAndReturn<T>(execute work: () throws -> T) rethrows -> T {
+public func syncOnMain<T>(execute work: () throws -> T) rethrows -> T {
     if Thread.isMainThread {
         return try work()
     } else {
