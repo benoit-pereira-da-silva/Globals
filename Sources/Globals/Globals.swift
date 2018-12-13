@@ -309,13 +309,13 @@ public extension Encodable{
 
 // MARK: - Numbers
 
-private func min<T:BinaryInteger>(numbers: T...) -> T {
+public func min<T:BinaryInteger>(numbers: T...) -> T {
     return numbers.reduce(numbers[0], {$0 < $1 ? $0 : $1})
 }
 
 // MARK: - levenshtein distance
 
-private class Array2D {
+public class Array2D {
     var cols: Int, rows: Int
     var matrix: [Int]
 
@@ -343,7 +343,7 @@ private class Array2D {
     }
 }
 
-private func levenshtein(_ aStr: String, _ bStr: String) -> Int {
+public func levenshtein(_ aStr: String, _ bStr: String) -> Int {
     let a = Array(aStr.utf16)
     let b = Array(bStr.utf16)
 
