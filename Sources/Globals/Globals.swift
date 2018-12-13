@@ -3,7 +3,7 @@
 //  Globals
 //
 //  Created by Benoit Pereira da silva on 20/11/2018.
-//  Copyright © 2018 Lylo Media Group. All rights reserved.
+//  Copyright © 2018 Benoit Pereira da Silva. All rights reserved.
 //
 
 import Foundation
