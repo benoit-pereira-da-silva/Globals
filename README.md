@@ -1,0 +1,2 @@
+# Globals
+Global utilities
