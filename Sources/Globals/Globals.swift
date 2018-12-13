@@ -153,6 +153,16 @@ public func doCatchLog(_ block:@escaping() throws -> Void, file: String = #file,
     }
 }
 
+public func doCatchLog<T>(_ block: () throws -> T, file: String = #file, function: String = #function, line: Int = #line, decorative: Bool = false)  -> T?{
+    do{
+        return try block()
+    } catch{
+        log("Error: \(error)",file: file,function: function, line: line,decorative: decorative)
+        return nil
+    }
+}
+
+
 // MARK: - Random
 
 
@@ -248,7 +258,7 @@ public func trim(_ string: String) -> String {
 }
 
 
-// MARK: Assigment
+// MARK: Assignment
 
 
 // The `=? operator allows simplify optional assignements :
@@ -262,4 +272,38 @@ public func =?<T> ( left: inout T?, right: T? ){
 public func =?<T> ( left: inout T, right: T? ){
     left = right ?? left
 }
+
+
+// MARK: - Encodable conversion
+
+
+public extension Encodable{
+
+    /// Returns a dictionary representation of the Model
+    ///
+    /// - Returns: the dictionary
+    public func toDictionaryRepresentation() -> Dictionary<String, Any>? {
+        return doCatchLog({
+            let data = try JSONEncoder().encode(self)
+            if let dictionary = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? Dictionary<String, Any> {
+                return dictionary
+            }
+            return Dictionary<String, Any>()
+        })
+    }
+
+    /// Returns an array representation
+    ///
+    /// - Returns: the dictionary
+    public func toArrayRepresentation() -> Array<Any>?{
+        return doCatchLog({
+            let data = try JSONEncoder().encode(self)
+            if let array = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? Array<Any> {
+                return array
+            }
+            return Array<Any>()
+        })
+    }
+}
+
 
