@@ -309,7 +309,7 @@ public extension Encodable{
 
 // MARK: - Numbers
 
-private func min(numbers: Int...) -> Int {
+private func min<T:BinaryInteger>(numbers: T...) -> T {
     return numbers.reduce(numbers[0], {$0 < $1 ? $0 : $1})
 }
 
