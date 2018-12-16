@@ -80,7 +80,7 @@ public func combineHashValues(_ initial: Int, _ other: Int) -> Int {
 
 public func saveCollection<T:Codable>(collection: [T], to url: URL) throws ->(){
     let data: Data = try JSONEncoder().encode(collection)
-    try _write(data: data, to: url)
+    try writeData(data, to: url)
 }
 
 
@@ -92,7 +92,7 @@ public func loadCollection<T:Codable>(from url:URL) throws -> [T]{
 
 public func save<T:Codable>(instance: T, to url: URL) throws ->(){
     let data: Data = try JSONEncoder().encode(instance)
-    try _write(data: data, to: url)
+    try writeData(data, to: url)
 }
 
 public func load<T:Codable>(from url:URL) throws -> T{
@@ -101,7 +101,7 @@ public func load<T:Codable>(from url:URL) throws -> T{
 }
 
 
-fileprivate func _write(data:Data, to url:URL) throws -> (){
+public func writeData(_ data:Data, to url:URL) throws -> (){
     do{
         try data.write(to: url)
     }catch{
