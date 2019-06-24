@@ -282,7 +282,7 @@ public extension Encodable{
     /// Returns a dictionary representation of the Model
     ///
     /// - Returns: the dictionary
-    public func toDictionaryRepresentation() -> Dictionary<String, Any>? {
+    func toDictionaryRepresentation() -> Dictionary<String, Any>? {
         return doCatchLog({
             let data = try JSONEncoder().encode(self)
             if let dictionary = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? Dictionary<String, Any> {
@@ -295,7 +295,7 @@ public extension Encodable{
     /// Returns an array representation
     ///
     /// - Returns: the dictionary
-    public func toArrayRepresentation() -> Array<Any>?{
+    func toArrayRepresentation() -> Array<Any>?{
         return doCatchLog({
             let data = try JSONEncoder().encode(self)
             if let array = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? Array<Any> {
