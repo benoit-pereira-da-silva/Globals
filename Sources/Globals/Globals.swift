@@ -121,8 +121,13 @@ public func writeData(_ data:Data, to url:URL) throws -> (){
 /// The document directory URL
 /// - Returns: the base directory URL
 public func getDocumentsDirectoryURL() -> URL {
-    #if os(iOS) || os(macOS) || os(tvOS) || os(watchOS)
+    #if os(iOS) || os(macOS) || os(watchOS)
     let urls = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+    if let url = urls.first {
+        return url
+    }
+    #elseif os(tvOS)
+    let urls = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)
     if let url = urls.first {
         return url
     }
